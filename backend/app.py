@@ -1,11 +1,14 @@
 from fastapi import FastAPI, HTTPException, Depends
 from sqlalchemy.orm import Session
 from typing import List
+from fastapi.middleware.cors import CORSMiddleware
 from models import get_db, Patient, Therapist, Appointment
 import schemas
 from schemas import Appointment , AppointmentBase, AppointmentCreate, Patient , PatientBase, PatientCreate , Therapist, TherapistBase, TherapistCreate
 
 app = FastAPI()
+
+app.add_middleware(CORSMiddleware, allow_origins = ['*'], allow_methods=['*'])
 
 # Defining routes
 @app.get("/")
@@ -22,7 +25,7 @@ def get_appointments(db: Session = Depends(get_db)):
 # POST
 @app.post("/appointments/{appointment_id}", response_model=schemas.Appointment)
 def book_appointment(appointment: schemas.AppointmentCreate, db: Session = Depends(get_db)):
-    db_appointment = Appointment(**appointment.dict())
+    db_appointment = Appointment(**appointment.model_dump())
     db.add(db_appointment)
     db.commit()
     db.refresh(db_appointment)
@@ -34,7 +37,7 @@ def reschedule_appointment(appointment_id: int, appointment: schemas.Appointment
     db_appointment = db.query(Appointment).filter(Appointment.id == appointment_id).first()
     if not db_appointment:
         raise HTTPException(status_code=404, detail="Appointment not found")
-    for key, value in appointment.dict().items():
+    for key, value in appointment.model_dump().items():
         setattr(db_appointment, key, value)
     db.commit()
     db.refresh(db_appointment)
@@ -53,9 +56,9 @@ def cancel_appointment(appointment_id: int, db: Session = Depends(get_db)):
 # b)Patient
 
 # POST
-@app.post("/patients/{patient_id}", response_model=schemas.Patient)
+@app.post("/patients", response_model=schemas.Patient)
 def register_patient(patient: schemas.PatientCreate, db: Session = Depends(get_db)):
-    db_patient = Patient(**patient.dict())
+    db_patient = Patient(**patient.model_dump())
     db.add(db_patient)
     db.commit()
     db.refresh(db_patient)
@@ -64,9 +67,9 @@ def register_patient(patient: schemas.PatientCreate, db: Session = Depends(get_d
 
 # c)Therapist
 # POST
-@app.post("/therapists/{therapist_id}", response_model=schemas.Therapist)
+@app.post("/therapists", response_model=schemas.Therapist)
 def register_therapist(therapist: schemas.TherapistCreate, db: Session = Depends(get_db)):
-    db_therapist = Therapist(**therapist.dict())
+    db_therapist = Therapist(**therapist.model_dump())
     db.add(db_therapist)
     db.commit()
     db.refresh(db_therapist)

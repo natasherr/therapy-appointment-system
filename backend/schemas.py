@@ -1,6 +1,8 @@
+# Schemas tells what our endpoints should expect
 from pydantic import BaseModel
 from datetime import datetime
 from typing import List, Optional
+
 
 class AppointmentBase(BaseModel):
     appointment_time: datetime
@@ -21,7 +23,9 @@ class PatientBase(BaseModel):
     name: str
 
 class PatientCreate(PatientBase):
+    id : int
     name: str
+    email : str
 
 class Patient(PatientBase):
     id: int
@@ -34,7 +38,9 @@ class TherapistBase(BaseModel):
     name: str
 
 class TherapistCreate(TherapistBase):
-    name:str
+    id : int
+    name: str
+    email : str
 
 
 class Therapist(TherapistBase):
