@@ -25,7 +25,7 @@ Base = declarative_base()
 class Patient(Base):
     __tablename__ = "patients"
 
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True,autoincrement=True, index=True)
     name = Column(String, index=True, nullable=False)
     email = Column(String, unique=True, index=True, nullable=False)
     appointments = relationship("Appointment", back_populates="patient")
@@ -33,7 +33,7 @@ class Patient(Base):
 class Therapist(Base):
     __tablename__ = "therapists"
 
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True,autoincrement=True, index=True)
     name = Column(String, index=True, nullable=False)
     email = Column(String, unique=True, index=True, nullable=False)
     appointments = relationship("Appointment", back_populates="therapist")
@@ -41,7 +41,7 @@ class Therapist(Base):
 class Appointment(Base):
     __tablename__ = "appointments"
 
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True,autoincrement=True, index=True)
     patient_id = Column(Integer, ForeignKey("patients.id"))
     therapist_id = Column(Integer, ForeignKey("therapists.id"))
     date_time = Column(DateTime(), default=datetime.now()) 
