@@ -10,6 +10,7 @@ uvicorn = "*"
 sqlalchemy = "*"
 alembic = "*"
 pydantic = "*"
+psycopg = "*"
 
 [dev-packages]
 
