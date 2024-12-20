@@ -6,7 +6,7 @@ const Patients = () => {
   const [patients, setPatients] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/patients')
+    axios.get('https://therapy-appointment-system.onrender.com/patients')
       .then(response => {
         setPatients(response.data);
       })

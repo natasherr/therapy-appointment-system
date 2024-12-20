@@ -9,7 +9,7 @@ const AddAppointment = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('http://localhost:8000/appointments', { date, patientId, therapistId })
+    axios.post('https://therapy-appointment-system.onrender.com/appointments', { date, patientId, therapistId })
       .then(response => {
         console.log(response.data);
         setDate('');

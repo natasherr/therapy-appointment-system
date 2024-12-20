@@ -6,7 +6,7 @@ const Appointments = () => {
   const [appointments, setAppointments] = useState([]);
 
   useEffect(() => {
-    axios.post('http://localhost:8000/appointments')
+    axios.post('https://therapy-appointment-system.onrender.com/appointments')
       .then(response => {
         setAppointments(response.data);
       })

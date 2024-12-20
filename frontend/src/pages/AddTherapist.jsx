@@ -8,7 +8,7 @@ const AddTherapist = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('http://localhost:8000/therapists', { name, email })
+    axios.post('https://therapy-appointment-system.onrender.com/therapists', { name, email })
       .then(response => {
         console.log(response.data);
         setName('');

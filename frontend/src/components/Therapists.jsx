@@ -5,7 +5,7 @@ const Therapists = () => {
   const [therapists, setTherapists] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/therapists')
+    axios.get('https://therapy-appointment-system.onrender.com/therapists')
       .then(response => {
         setTherapists(response.data);
       })
