@@ -12,7 +12,7 @@ class AppointmentCreate(AppointmentBase):
     therapist_id: int
 
 class Appointment(AppointmentBase):
-    id: int
+    
     patient_id: int
     therapist_id: int
 
@@ -23,12 +23,12 @@ class PatientBase(BaseModel):
     name: str
 
 class PatientCreate(PatientBase):
-    id : int
+    
     name: str
     email : str
 
 class Patient(PatientBase):
-    id: int
+    
     appointments: List[Appointment] = []
 
     class Config:
@@ -38,13 +38,13 @@ class TherapistBase(BaseModel):
     name: str
 
 class TherapistCreate(TherapistBase):
-    id : int
+    
     name: str
     email : str
 
 
 class Therapist(TherapistBase):
-    id: int
+    
     appointments: List[Appointment] = []
 
     class Config:
