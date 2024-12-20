@@ -4,7 +4,7 @@ const Appointments = () => {
   const [appointments, setAppointments] = useState([]);
 
   useEffect(() => {
-    fetch('https://therapy-appointment-system.onrender.com/appointments')
+    fetch('http://localhost:8000/appointments')
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');

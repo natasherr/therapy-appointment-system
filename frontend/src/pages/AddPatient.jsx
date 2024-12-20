@@ -7,7 +7,7 @@ const AddPatient = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     
-    fetch('https://therapy-appointment-system.onrender.com/patients', {
+    fetch('http://localhost:8000/patients', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

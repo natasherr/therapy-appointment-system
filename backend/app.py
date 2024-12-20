@@ -16,7 +16,7 @@ def index():
 
 # a)Appointments
 # GET 
-@app.get("/appointments/{appointment_id}", response_model=List[schemas.Appointment])
+@app.get("/appointments/{id}", response_model=List[schemas.Appointment])
 def get_appointments(db: Session = Depends(get_db)):
     appointments = db.query(Appointment).all()
     return appointments
