@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-
 
 const AddAppointment = () => {
   const [date, setDate] = useState('');
@@ -9,16 +7,29 @@ const AddAppointment = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('https://therapy-appointment-system.onrender.com/appointments', { date, patientId, therapistId })
-      .then(response => {
-        console.log(response.data);
-        setDate('');
-        setPatientId('');
-        setTherapistId('');
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    
+    fetch('https://therapy-appointment-system.onrender.com/appointments', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ date, patientId, therapistId })
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+      setDate('');
+      setPatientId('');
+      setTherapistId('');
+    })
+    .catch(error => {
+      console.error('Fetch error:', error);
+    });
   };
 
   return (
