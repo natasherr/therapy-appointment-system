@@ -44,6 +44,6 @@ class Appointment(Base):
     id = Column(Integer, primary_key=True,autoincrement=True, index=True)
     patient_id = Column(Integer, ForeignKey("patients.id"))
     therapist_id = Column(Integer, ForeignKey("therapists.id"))
-    date_time = Column(DateTime(), default=datetime.now()) 
+    appointment_time = Column(DateTime(), default=datetime.now()) 
     patient = relationship("Patient", back_populates="appointments")
     therapist = relationship("Therapist", back_populates="appointments")
