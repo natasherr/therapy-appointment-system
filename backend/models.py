@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker, relationship
 from datetime import datetime
 
 # connecting to our therapy.db
-engine = create_engine('sqlite:///therapy.db', echo=True)
+engine = create_engine('postgresql://admin:bEJbQCp7VWsJbYkvKM4rHr1ESyV1FH5l@dpg-ctika13tq21c73dqgb9g-a.oregon-postgres.render.com/therapy_t4cv', echo=True)
 
 # create a session
 Session = sessionmaker(bind=engine)
