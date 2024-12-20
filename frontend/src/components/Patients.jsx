@@ -1,21 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const Patients = () => {
   const [patients, setPatients] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8000/patients')
+    axios.get('http://localhost:8000/patients')
       .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        setPatients(data);
+        setPatients(response.data);
       })
       .catch(error => {
-        console.error('Fetch error:', error);
+        console.error('Axios error:', error);
       });
   }, []);
 

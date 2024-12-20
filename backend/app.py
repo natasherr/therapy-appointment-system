@@ -82,7 +82,7 @@ def update_patient(patient_id: int, patient: schemas.PatientCreate, db: Session 
     db_patient = db.query(Patient).filter(Patient.id == patient_id).first()
     if not db_patient:
         raise HTTPException(status_code=404, detail="Patient not found")
-    for key, value in patient.dict().items():
+    for key, value in patient.model_dump().items():
         setattr(db_patient, key, value)
     db.commit()
     db.refresh(db_patient)
@@ -102,7 +102,7 @@ def update_therapist(therapist_id: int, therapist: schemas.TherapistCreate, db: 
     db_therapist = db.query(Therapist).filter(Therapist.id == therapist_id).first()
     if not db_therapist:
         raise HTTPException(status_code=404, detail="Therapist not found")
-    for key, value in therapist.dict().items():
+    for key, value in therapist.model_dump().items():
         setattr(db_therapist, key, value)
     db.commit()
     db.refresh(db_therapist)

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const AddPatient = () => {
   const [name, setName] = useState('');
@@ -7,26 +8,17 @@ const AddPatient = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     
-    fetch('http://localhost:8000/patients', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ name, email })
+    axios.post('http://localhost:8000/patients', {
+      name,
+      email
     })
     .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log(data);
+      console.log(response.data);
       setName('');
       setEmail('');
     })
     .catch(error => {
-      console.error('Fetch error:', error);
+      console.error('Axios error:', error);
     });
   };
 

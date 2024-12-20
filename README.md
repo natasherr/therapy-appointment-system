@@ -3,7 +3,7 @@
 ## Links
 [Slides Link](https://docs.google.com/presentation/d/1u0juOKCGiV5Ql2LZkt2tqECc2iLDUhchBX2_x8zRLnU/edit?usp=sharing)
 [Backend Render Link](https://therapy-appointment-system.onrender.com)
-
+[Video Link](https://drive.google.com/file/d/1JGCljBY0dwEChzcc1a8fXdKZf3a60Gtq/view?usp=sharing)
 ## Description
 A digital therapy appointment system that simplifies scheduling for patients and enhances time management for therapists.
 
